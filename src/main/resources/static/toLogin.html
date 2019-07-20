@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: common_header(~{::title},~{::link})">
+    <title>Fly Doge</title>
+
+    <link rel="stylesheet" th:href="@{/fly/dist/css/main.css}"/>
+</head>
+<body class="hold-transition sidebar-mini">
+<div th:replace="base :: base('主页',~{::content})">
+    <content>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">基本信息</h3>
+                    </div> <!-- /.card-body -->
+                    <div class="card-body">
+                        <div class="panel panel-default">
+                            <div style="padding: 10px 0 20px 10px;">
+                                <h3>&nbsp;&nbsp;&nbsp;Fly Doge后台管理系统2.0</h3>
+                                <br>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;技术选型：</p>
+                                <ul>
+                                    <li>Spring Boot、Spring Data JPA；</li>
+                                    <li>使用 MySQL 存储数据；</li>
+                                    <li>使用 Filter 检查用户的登录状态；</li>
+                                    <li>使用 Redis 管理用户 Session、数据缓存；</li>
+                                    <li>使用 Thymeleaf、AdminLTE3、SweetAlert、JqGrid、JQuery 等前端框架组件及控件；</li>
+                                    <li>使用 Nginx 反向代理。</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div><!-- /.card-body -->
+                </div>
+            </div><!-- /.container-fluid -->
+        </div>
+    </content>
+</div>
+</body>
+</html>

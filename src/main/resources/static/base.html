@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="common_header(title,links)">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title th:replace="${title}">comm title</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/x-icon" th:href="@{/fly/favicon1.ico}"/>
+    <link rel="stylesheet" th:href="@{/fly/plugins/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/fly/plugins/bootstrap/css/bootstrap.css}"/>
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{/fly/dist/css/adminlte.min.css}"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" th:href="@{/fly/plugins/font-awesome/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/fly/dist/css/main.css}"/>
+    <!-- sweet alert -->
+    <link rel="stylesheet" th:href="@{/fly/plugins/sweetalert/sweetalert.css}"/>
+
+    <!-- jQuery -->
+    <script type="text/javascript" th:src="@{/fly/plugins/jquery/jquery.min.js}"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script type="text/javascript" th:src="@{/fly/plugins/jQueryUI/jquery-ui.min.js}"></script>
+    <!-- Bootstrap 4 -->
+    <script type="text/javascript" th:src="@{/fly/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <!-- AdminLTE App -->
+    <script type="text/javascript" th:src="@{/fly/dist/js/adminlte.js}"></script>
+    <!-- sweet alert -->
+    <script type="text/javascript" th:src="@{/fly/plugins/sweetalert/sweetalert.min.js}"></script>
+    <script th:src="@{/fly/plugins/custombox/custombox.min.js}"></script>
+    <script th:src="@{/fly/plugins/custombox/custombox.legacy.min.js}"></script>
+    <script type="text/javascript" th:src="@{/fly/dist/js/public.js}"></script>
+
+    <th:block th:replace="${links}" />
+</head>
+<body class="hold-transition sidebar-mini" onLoad="checkCookie();">
+<div th:fragment="base(title,content)" class="wrapper">
+
+    <div th:replace="base/common_top::common_top"></div>
+    <div th:replace="base/common_left::common_left"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 th:text="${title}" class="m-0 text-dark">主页</h1>
+                    </div><!-- /.col -->
+                    <div th:unless="${title == '主页'}" class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">主页</a></li>
+                            <li th:text="${title}" class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <div th:include="${content}"></div>
+        <!-- Main content -->
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- toLogin -->
+    <div class="card" id="modalLogin" style="display: none">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">往古来今谓之宙，四方上下谓之宇</p>
+            <form action="#" onsubmit="return false;" method="post">
+                <div class="form-group">
+                    <div class="alert alert-danger" style="display: none;">错误信息展示栏。</div>
+                </div>
+                <div class="form-group has-feedback">
+                    <span class="fa fa-user form-control-feedback"></span>
+                    <input type="text" id="userName_login" class="form-control" placeholder="默认账号：admin">
+                </div>
+                <div class="form-group has-feedback">
+                    <span class="fa fa-lock form-control-feedback"></span>
+                    <input type="password" id="password_login" class="form-control" placeholder="默认密码：123456">
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="checkbox icheck">
+                            <label>
+                                <input type="checkbox"> 记住我
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="submit" onclick="login()" class="btn btn-primary btn-block btn-flat">登录
+                        </button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- toLogin -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<footer th:fragment="common_footer" class="main-footer">
+    <strong>Copyright &copy; 2019 <a href="##">freekingd.com</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 2.0
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>left</title>
+</head>
+<body>
+<!-- Main Sidebar Container -->
+<aside th:fragment="common_left" class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/fly" class="brand-link">
+        <img src="/fly/dist/img/logo.jpg" alt="ssm-cluster Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">Fly Doge</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="/fly/dist/img/logo3.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a onclick="window.location.href='/fly/fly/test'" class="d-block" th:text="${session.LOGIN_SESSION_USER!=null ? session.LOGIN_SESSION_USER.userName : ''}">freeking</a>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+                <li class="nav-item has-treeview menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fa fa-dashboard"></i>
+                        <p>
+                            Dashboard
+                            <i class="right fa fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/fly" class="nav-link active">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p>Fly Doge</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-header">管理模块</li>
+                <li class="nav-item">
+                    <a href="/fly/user" class="nav-link">
+                        <i class="fa fa-user-circle nav-icon"></i>
+                        <p>用户管理</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/fly/picture" class="nav-link">
+                        <i class="nav-icon fa fa-image"></i>
+                        <p>图片管理</p>
+                    </a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a href="/file_upload" class="nav-link">
+                        <i class="fa fa-upload nav-icon"></i>
+                        <p>文件上传</p>
+                    </a>
+                </li> -->
+                <li class="nav-item">
+                    <a href="/fly/article" class="nav-link">
+                        <i class="fa fa-edit nav-icon"></i>
+                        <p>富文本编辑</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: common_header(~{::title},~{::link})">
+    <title>富文本编辑</title>
+
+    <link href="/fly/plugins/jqgrid-5.3.0/ui.jqgrid-bootstrap4.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/fly/plugins/flatpickr/flatpickr.dark.min.css">
+    <link rel="stylesheet" href="/fly/plugins/kindeditor-4.1.10/themes/default/default.css"/>
+    <link href="/fly/plugins/custombox/custombox.min.css" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini" onLoad="checkCookie();">
+<div th:replace="base :: base('富文本编辑',~{::content})">
+    <content>
+        <div class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="grid-btn">
+                                <button class="btn btn-info" onclick="articleAdd()"><i
+                                        class="fa fa-plus"></i>&nbsp;新增
+                                </button>
+                                <button class="btn btn-info" onclick="articleEdit()"><i
+                                        class="fa fa-pencil-square-o"></i>&nbsp;修改
+                                </button>
+                                <button class="btn btn-danger" onclick="deleteArticle()"><i
+                                        class="fa fa-trash-o"></i>&nbsp;删除
+                                </button>&nbsp;&nbsp;<br><br>
+                                <input type="text" placeholder="关键字" id="keyword" class="form-control col-lg-2">&nbsp;
+                                <input class="startTime form-control col-sm-3" data-enable-time="true"
+                                       data-enable-seconds="true" placeholder="选择起始时间">&nbsp;
+                                <input class="endTime form-control col-sm-3" data-enable-time="true"
+                                       data-enable-seconds="true" placeholder="选择截止时间">&nbsp;
+                                <button class="btn btn-info" onclick="search()" style="margin-bottom: 5px;"><i
+                                        class="fa fa-search"></i>&nbsp;搜索
+                                </button>
+                            </div>
+                            <table id="jqGrid" class="table table-bordered">
+                            </table>
+                            <div id="jqGridPager"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="modal fade" id="articleModal" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="width: 800px;height: 860px;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h6 class="modal-title" id="articleModalLabel">编辑</h6>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <div class="alert alert-danger">错误信息展示栏。</div>
+                                </div>
+                                <input type="hidden" id="articleId" value="0">
+                                <div class="form-group">
+                                    <label for="articleName" class="control-label">标题:</label>
+                                    <input type="text" class="form-control" style="width: 70%" id="articleName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="articleAuthor" class="control-label">作者:</label>
+                                    <input type="text" class="form-control" style="width: 70%" id="articleAuthor">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">内容:</label>
+                                    <textarea class="form-control" id="editor"
+                                              style="width:700px;height:450px;"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="saveButton">确认</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal -->
+        </div>
+    </content>
+</div>
+
+<!-- kindeditor -->
+<script charset="utf-8" src="/fly/plugins/kindeditor-4.1.10/kindeditor-all.js"></script>
+<script charset="utf-8" src="/fly/plugins/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<script type="text/javascript" src="/fly/plugins/flatpickr/flatpickr.min.js"></script>
+<script src="/fly/plugins/jqgrid-5.3.0/grid.locale-cn.js"></script>
+<script src="/fly/plugins/jqgrid-5.3.0/jquery.jqGrid.min.js"></script>
+<script type="text/javascript" src="/fly/dist/js/article.js"></script>
+</body>
+</html>

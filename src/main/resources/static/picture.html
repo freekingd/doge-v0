@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: common_header(~{::title},~{::link})">
+    <title>图片管理</title>
+
+    <link href="/fly/plugins/jqgrid-5.3.0/ui.jqgrid-bootstrap4.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/fly/plugins/flatpickr/flatpickr.dark.min.css">
+    <link rel="stylesheet" href="/fly/plugins/kindeditor-4.1.10/themes/default/default.css"/>
+    <link href="/fly/plugins/custombox/custombox.min.css" rel="stylesheet">
+    <!-- webuploader -->
+    <link href="/fly/plugins/webuploader/webuploader.css" rel="stylesheet"/>
+    <style>
+        #filePicker div:nth-child(2){width:100%!important;height:100%!important;}
+    </style>
+</head>
+<body class="hold-transition sidebar-mini" onLoad="checkCookie();">
+<div th:replace="base :: base('图片管理',~{::content})">
+    <content>
+        <div class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="grid-btn">
+                                <button class="btn btn-info" onclick="pictureAdd()"><i
+                                        class="fa fa-plus"></i>&nbsp;添加
+                                </button>
+                                <button class="btn btn-info" onclick="pictureEdit()"><i
+                                        class="fa fa-pencil-square-o"></i>&nbsp;修改
+                                </button>
+                                <button class="btn btn-danger" onclick="deletePicture()"><i
+                                        class="fa fa-trash-o"></i>&nbsp;删除
+                                </button>
+                                <button class="btn btn-info" onclick="pictureAddBatch()"><i
+                                        class="fa fa-plus-circle"></i>&nbsp;批量添加
+                                </button>
+                            </div>
+                            <table id="jqGrid" class="table table-bordered">
+                            </table>
+                            <div id="jqGridPager"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.content -->
+        <div class="content">
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="pictureModal" tabindex="-1" role="dialog" aria-labelledby="pictureModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h6 class="modal-title" id="pictureModalLabel">图片编辑</h6>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <div class="alert alert-danger">错误信息展示栏。</div>
+                                </div>
+                                <input type="hidden" id="pictureId" value="0">
+                                <input type="hidden" id="picturePath" value="">
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <img id="img" src="/fly/dist/img/logo.jpg">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <a class="btn btn-info" id="upload"><i
+                                                class="fa fa-picture-o"></i>&nbsp;上传文件</a>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pictureRemark" class="control-label">备注:</label>
+                                    <input type="text" class="form-control" id="pictureRemark">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="saveButton">确认</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal -->
+        </div>
+
+        <div class="content" id="addBatchModal" style="display: none">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width: 950px;height: 500px;margin-left: 50%">
+                    <div class="container-fluid">
+                        <div class="callout callout-info">
+                            <div id="uploader-demo">
+                                <div>
+                                    <div id="fileUploader">选择图片</div>
+                                    <button id="uploadBatch" class="btn btn-default">开始上传</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 图片上传后的路径 -->
+                    <!--<div class="callout callout-info">
+                        <h5>图片存储路径</h5>
+                        <div id="imgResult">
+
+                        </div>
+                    </div>-->
+                    <!-- 图片预览 -->
+                    <div class="row" id="previewList">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+            <!-- /.modal -->
+    </content>
+</div>
+
+<script src="/fly/plugins/jqgrid-5.3.0/grid.locale-cn.js"></script>
+<script src="/fly/plugins/jqgrid-5.3.0/jquery.jqGrid.min.js"></script>
+<script src="/fly/plugins/ajaxupload/ajaxupload.js"></script>
+<script src="/fly/plugins/webuploader/webuploader.min.js"></script>
+<script src="/fly/dist/js/picture.js"></script>
+</body>
+</html>
